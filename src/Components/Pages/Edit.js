@@ -49,7 +49,7 @@ function Edit () {
    }
   
    dispatch(gettodo(id))
- },[]);
+ },[getvews]);
 
 
   return (
@@ -96,7 +96,7 @@ function Edit () {
             id="data"
             // label="Data"
             name="Data"
-            type="file"
+            type="filename"
             autoComplete="Data"
             value={data}
             onChange={(e)=>setData(e.target.value)}
