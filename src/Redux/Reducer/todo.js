@@ -62,7 +62,13 @@ export const todoReducer = (state = intialState, action) => {
             ...state,
             todoget: get,
           }
-            
+          
+        case  EDIT_TODO:
+          return{
+            ...state,
+            todo: state.todo.map((todoget) => todoget.id == action.payload.id ? 
+            action.payload:todoget)
+          }
 
       
       default:

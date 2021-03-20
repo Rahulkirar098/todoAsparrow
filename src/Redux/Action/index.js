@@ -20,3 +20,8 @@ export const gettodo = (payload) => ({
         type: GET_TODO,
         payload,
 })
+
+export const edittodo = (payload) => ({
+        type: EDIT_TODO,
+        payload,
+})

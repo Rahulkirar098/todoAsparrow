@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { useSelector,useDispatch } from "react-redux";
-import { gettodo } from "../../Redux/Action";
+import { gettodo,edittodo } from "../../Redux/Action";
 import { useParams } from "react-router-dom";
 
 
@@ -42,7 +42,7 @@ function Edit () {
   const [data, setData] = useState("")
 
  useEffect(()=>{
-   if(getvews != null){
+   if(getvews !== null){
     setTitle(getvews.title);
     setDescripation(getvews.descripation);
     setData(getvews.data);
@@ -51,7 +51,19 @@ function Edit () {
    dispatch(gettodo(id))
  },[getvews]);
 
+ const editsubmit = (e) =>{
+  e.preventDefault();
 
+  const updatetodo = {
+    title:title,
+    descripation:descripation,
+    data:data
+  }
+
+  dispatch(edittodo(updatetodo))
+
+
+ }
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -61,7 +73,7 @@ function Edit () {
           Views & Edit
         </Typography>
 
-        <form className={classes.form} >
+        <form className={classes.form} onSubmit={(e) => editsubmit(e)} >
           <TextField
             variant="outlined"
             margin="normal"
@@ -94,7 +106,6 @@ function Edit () {
             required
             fullWidth
             id="data"
-            // label="Data"
             name="Data"
             type="filename"
             autoComplete="Data"
@@ -109,7 +120,7 @@ function Edit () {
             color="primary"
             className={classes.submit}
           >
-            Sign In
+            Create
           </Button>
 
         </form>
